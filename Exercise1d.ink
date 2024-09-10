@@ -13,34 +13,47 @@ This exercise will demonstrate the following in the example video:
 */
 
 
-VAR time = 0 //  0 Morning, 1 Noon, 2 Night
+VAR time = -1 //  0 Morning, 1 Noon, 2 Night
 
 
 
 
--> seashore
+-> Forest 
 
-== seashore ==
-You are sitting on the beach. 
+== Forest== 
+you are wondering the forest when you notice a yellow flower.
+It is {advance_time () }
 
-+ [Wait] -> seashore
++ [pick the yellow flower] -> Forest2
 -> DONE
 
-== beach2 ==
-This is further down the beach.
+== Forest2 ==
+You jump back a bit and realise you are in the forest. You realise time had passed for way longer than you thought... how could that be?
+It is {advance_time () }
+* {time == 2} [pick the YELLOW flower]-> Purple
++ [pick the yellow flower] -> Forest
+* {time == 5} [Seriously pick up the yellow flower] -> YELLOW 
+You hear a scary noise 
+* {time == 10} [pick THE yellow flower player]-> HELP
+* {time == 15} [PICK THE YELLOW FLOWER NOW]-> ending
+== Purple ==
+You picked up the yellow flower, correct player? -> Forest2
 
-+ [Move back up the beach] -> seashore
+=== YELLOW ===
+Player.... you need to pick the yellow flower to end this -> Forest2
 
-== shells ==
-You pick up the shells
--> beach2
+=== HELP ===
+player you have to save yourself... pick the yellow flower.-> Forest2
+=== ending ===
+you never found yourself out of the timeloop player. You never picked the yellow flower-> END
+
 
 == function advance_time ==
 
     ~ time = time + 1
     
     {
-        - time > 2:
+        - time > 15:
             ~ time = 0
     }    
     /*
